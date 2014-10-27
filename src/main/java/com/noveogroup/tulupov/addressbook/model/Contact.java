@@ -13,7 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import static com.noveogroup.tulupov.addressbook.database.DatabaseContract.Contact.*;
+import static com.noveogroup.tulupov.addressbook.model.Contact.*;
 
 /**
  * Contact entity.
@@ -22,6 +22,16 @@ import static com.noveogroup.tulupov.addressbook.database.DatabaseContract.Conta
 @Table(name = TABLE_NAME)
 @ToString
 public class Contact {
+    public static final String TABLE_NAME = "Contact";
+    public static final String ID = "id";
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String EMAIL = "email";
+    public static final String PHONE = "phone";
+    public static final String IP = "ip";
+    public static final String PHOTO = "photo";
+
+
     @Id
     @Column(name = ID)
     @GeneratedValue
