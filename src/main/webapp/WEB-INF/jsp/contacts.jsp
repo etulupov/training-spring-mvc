@@ -34,16 +34,16 @@
             </thead>
             <tbody>
             <c:forEach items="${contactList}" var="contact">
-                <tr href="contacts/${contact.id}" class="table-row">
-                    <td><img src="photo/${contact.id}" alt="" class="photo"/></td>
+                <tr href="<c:url value="/contacts/${contact.id}"/>" class="table-row">
+                    <td><img src="<c:url value="/photo/${contact.id}"/>" alt="" class="photo"/></td>
                     <td>${contact.firstname}</td>
                     <td>${contact.lastname}</td>
                     <td>${contact.email}</td>
                     <td>${contact.phone}</td>
                     <td>${f:IPtoString(contact.ip)}</td>
-                    <td class="button"><a href="edit/${contact.id}"><img src="resources/image/edit.png" alt=""/> </a>
+                    <td class="button"><a href="<c:url value="/edit/${contact.id}"/>"><img src="<c:url value="/resources/image/edit.png"/>" alt=""/> </a>
                     </td>
-                    <td class="button"><a href="delete/${contact.id}"><img src="resources/image/delete.png" alt=""/>
+                    <td class="button"><a href="<c:url value="/delete/${contact.id}?page=${page}"/>"><img src="<c:url value="/resources/image/delete.png"/>" alt=""/>
                     </a></td>
                 </tr>
             </c:forEach>

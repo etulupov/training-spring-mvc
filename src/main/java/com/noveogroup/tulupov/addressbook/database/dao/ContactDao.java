@@ -8,20 +8,8 @@ import java.util.List;
 /**
  * Contact dao interface.
  */
-public interface ContactDao {
-    void add(Contact contact);
-
-    void update(Contact contact);
-
-    List<Contact> query();
-
+public interface ContactDao extends AbstractDao<Integer, Contact> {
     List<Contact> query(Pageable pageable);
-
-    void remove(int id);
-
-    Contact get(int id);
-
-    boolean isExist(int id);
 
     long count();
 }

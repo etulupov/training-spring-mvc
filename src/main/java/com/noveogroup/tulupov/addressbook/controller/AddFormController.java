@@ -50,6 +50,7 @@ public class AddFormController extends AbstractFormController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String form(final Model model) {
         model.addAttribute(MODEL_CONTACT, new Contact());
+
         return VIEW_CONTACT;
     }
 }

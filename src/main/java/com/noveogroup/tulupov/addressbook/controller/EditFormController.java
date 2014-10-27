@@ -1,8 +1,11 @@
 package com.noveogroup.tulupov.addressbook.controller;
 
+import com.noveogroup.tulupov.addressbook.exception.ContactNotFoundException;
 import com.noveogroup.tulupov.addressbook.model.Contact;
 import com.noveogroup.tulupov.addressbook.service.ContactService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +22,7 @@ import java.io.IOException;
  * Contact edit form controller.
  */
 @Controller
+@Slf4j
 public class EditFormController extends AbstractFormController {
     private static final String CONTACT = "contact";
     private static final String VIEW_EDIT_CONTACT = "edit_contact";
@@ -46,7 +50,13 @@ public class EditFormController extends AbstractFormController {
             contact.setPhoto(contact.getFile().getBytes());
         }
 
-        contactService.update(contact);
+        try {
+            contactService.update(contact);
+        } catch (DataAccessException e) {
+            log.error("Cannot update contact id=" + id, e);
+            throw new ContactNotFoundException();
+        }
+
 
         return "redirect:/contacts/" + id;
     }
@@ -55,8 +65,14 @@ public class EditFormController extends AbstractFormController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable final int id,
                        final Model model) throws IOException {
+        Contact contact = contactService.get(id);
 
-        model.addAttribute(MODEL_CONTACT, contactService.get(id));
+        if (contact == null) {
+            log.error("Cannot find contact by id=" + id);
+            throw new ContactNotFoundException();
+        }
+
+        model.addAttribute(MODEL_CONTACT, contact);
 
         return VIEW_EDIT_CONTACT;
     }

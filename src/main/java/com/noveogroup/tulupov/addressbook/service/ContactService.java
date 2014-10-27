@@ -8,21 +8,12 @@ import org.springframework.data.domain.Pageable;
 /**
  * Contact service interface.
  */
-public interface ContactService {
-    void add(Contact contact);
-
-    void update(Contact contact);
-
+public interface ContactService extends AbstractService<Integer, Contact> {
     Page<Contact> query(Pageable pageable);
 
-    void remove(int id);
+    void removePhoto(Integer id);
 
-    void removePhoto(int id);
-
-    byte[] getPhoto(int id);
+    byte[] getPhoto(Integer id);
 
     long count();
-
-    Contact get(int id);
-
 }

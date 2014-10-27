@@ -17,13 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class ContactServiceImpl implements ContactService {
-    @Autowired
+public class ContactServiceImpl extends AbstractServiceImpl<Integer, Contact> implements ContactService {
+
     private ContactDao contactDao;
 
-    @Override
-    public void add(final Contact contact) {
-        contactDao.add(contact);
+    @Autowired
+    public ContactServiceImpl(ContactDao contactDao) {
+        super(contactDao);
+        this.contactDao = contactDao;
     }
 
     @Override
@@ -32,53 +33,26 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void remove(final int id) {
-        checkContact(id);
-
-        contactDao.remove(id);
-    }
-
-    @Override
-    public Contact get(final int id) {
-        checkContact(id);
-
-        return contactDao.get(id);
-    }
-
-    private void checkContact(final int id) {
-        if (!contactDao.isExist(id)) {
-            throw new ContactNotFoundException();
-        }
-    }
-
-    @Override
-    public void update(final Contact contact) {
-        if (!contactDao.isExist(contact.getId())) {
-            throw new ContactNotFoundException();
-        }
-        contactDao.update(contact);
-    }
-
-    @Override
     public long count() {
         return contactDao.count();
     }
 
     @Override
-    public void removePhoto(final int id) {
-        checkContact(id);
-
+    public void removePhoto(final Integer id) {
         final Contact contact = get(id);
-        contact.setPhoto(null);
 
+        if (contact == null) {
+            throw new ContactNotFoundException();
+        }
+
+        contact.setPhoto(null);
         update(contact);
     }
 
     @Override
-    public byte[] getPhoto(final int id) {
-        checkContact(id);
-
+    public byte[] getPhoto(final Integer id) {
         final Contact contact = get(id);
+
         if (contact != null) {
             return contact.getPhoto();
         }
