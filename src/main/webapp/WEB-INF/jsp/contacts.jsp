@@ -10,6 +10,7 @@
 <html>
 <head>
     <title><spring:message code="title"/></title>
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-table.css"/>">
 </head>
 <body>
 
@@ -19,15 +20,16 @@
     <my:paginator/>
 
     <c:if test="${!empty contactList}">
-        <table class="table table-striped">
+        <table class="table table-striped fixed-table-container">
             <thead>
             <tr>
                 <th>&nbsp;</th>
-                <th><spring:message code="label.firstname"/></th>
-                <th><spring:message code="label.lastname"/></th>
-                <th><spring:message code="label.email"/></th>
-                <th><spring:message code="label.telephone"/></th>
-                <th><spring:message code="label.ip"/></th>
+                <my:column name="id" title="label.id"/>
+                <my:column name="firstname" title="label.firstname"/>
+                <my:column name="lastname" title="label.lastname"/>
+                <my:column name="email" title="label.email"/>
+                <my:column name="phone" title="label.telephone"/>
+                <my:column name="ip" title="label.ip"/>
                 <th class="button">&nbsp;</th>
                 <th class="button">&nbsp;</th>
             </tr>
@@ -36,14 +38,17 @@
             <c:forEach items="${contactList}" var="contact">
                 <tr href="<c:url value="/contacts/${contact.id}"/>" class="table-row">
                     <td><img src="<c:url value="/photo/${contact.id}"/>" alt="" class="photo"/></td>
+                    <td>${contact.id}</td>
                     <td>${contact.firstname}</td>
                     <td>${contact.lastname}</td>
                     <td>${contact.email}</td>
                     <td>${contact.phone}</td>
                     <td>${f:IPtoString(contact.ip)}</td>
-                    <td class="button"><a href="<c:url value="/edit/${contact.id}"/>"><img src="<c:url value="/resources/image/edit.png"/>" alt=""/> </a>
+                    <td class="button"><a href="<c:url value="/edit/${contact.id}"/>"><img
+                            src="<c:url value="/resources/image/edit.png"/>" alt=""/> </a>
                     </td>
-                    <td class="button"><a href="<c:url value="/delete/${contact.id}?page=${page}"/>"><img src="<c:url value="/resources/image/delete.png"/>" alt=""/>
+                    <td class="button"><a href="<c:url value="/delete/${contact.id}?page=${page}"/>"><img
+                            src="<c:url value="/resources/image/delete.png"/>" alt=""/>
                     </a></td>
                 </tr>
             </c:forEach>

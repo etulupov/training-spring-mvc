@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.IOException;
-
 import static com.noveogroup.tulupov.addressbook.util.Config.PAGE_SIZE;
 
 /**
@@ -35,7 +33,7 @@ public class MainController {
     @Autowired
     private ContactService contactService;
 
-    @RequestMapping({"/", "/contacts"})
+    @RequestMapping({ "/", "/contacts" })
     public String listContacts(final Model model,
                                @PageableDefault(size = PAGE_SIZE)
                                final Pageable pageable) {
@@ -45,6 +43,7 @@ public class MainController {
         model.addAttribute("contactList", page.getContent());
         model.addAttribute("pages", wrapper.getItems());
         model.addAttribute("page", pageable.getPageNumber());
+        model.addAttribute("sort", pageable.getSort());
 
         return VIEW_LIST;
     }

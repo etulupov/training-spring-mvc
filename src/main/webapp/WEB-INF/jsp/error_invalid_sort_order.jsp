@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<div class="alert alert-danger"><spring:message code="error"/> <spring:message code="error.contact_not_found"/></div>
+<div class="alert alert-danger"><spring:message code="error"/> <spring:message code="error.invalid_sort_order"/></div>
 
 </body>
 </html>

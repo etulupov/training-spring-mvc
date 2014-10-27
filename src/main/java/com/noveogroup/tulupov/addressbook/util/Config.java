@@ -1,5 +1,7 @@
 package com.noveogroup.tulupov.addressbook.util;
 
+import com.noveogroup.tulupov.addressbook.model.Contact;
+
 /**
  * Holds webapp parameters.
  */
