@@ -40,12 +40,9 @@
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
-
-
-
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="language"></property>
+            <property name="paramName" value="language"/>
         </bean>
     </mvc:interceptors>
 
@@ -59,6 +56,4 @@
             <bean class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
-
-
 </beans>
