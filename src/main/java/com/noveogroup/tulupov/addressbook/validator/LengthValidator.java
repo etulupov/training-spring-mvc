@@ -19,10 +19,6 @@ public class LengthValidator implements ConstraintValidator<Length, MultipartFil
 
     @Override
     public boolean isValid(final MultipartFile file, final ConstraintValidatorContext constraintContext) {
-        if (file == null) {
-            return true;
-        }
-
-        return file.getSize() <= size;
+        return file == null || file.getSize() <= size;
     }
 }

@@ -16,6 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = ContentTypeValidator.class)
 @Documented
+@SuppressWarnings("unused")
 public @interface ContentType {
 
     String message() default "Invalid content type";

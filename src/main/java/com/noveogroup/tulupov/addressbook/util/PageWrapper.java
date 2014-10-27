@@ -14,13 +14,12 @@ import java.util.List;
  */
 public final class PageWrapper {
     @Getter
+    @SuppressWarnings("all")
     private List<PageItem> items;
 
     public PageWrapper(final Page<Contact> page) {
         if (page.getTotalElements() != 0) {
-
-
-            items = new ArrayList<PageItem>();
+            items = new ArrayList<>();
 
             final int pageCount = page.getTotalPages();
             final int current = page.getNumber();

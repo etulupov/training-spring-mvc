@@ -16,6 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = LengthValidator.class)
 @Documented
+@SuppressWarnings("unused")
 public @interface Length {
 
     String message() default "Invalid length";
