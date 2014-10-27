@@ -21,6 +21,7 @@ import static com.noveogroup.tulupov.addressbook.model.Contact.*;
 @Entity
 @Table(name = TABLE_NAME)
 @ToString
+@SuppressWarnings("unused")
 public class Contact {
     public static final String TABLE_NAME = "Contact";
     public static final String ID = "id";

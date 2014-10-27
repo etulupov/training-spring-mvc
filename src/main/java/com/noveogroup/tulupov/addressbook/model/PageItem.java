@@ -7,6 +7,7 @@ import lombok.Setter;
 /**
  * Page item model.
  */
+@SuppressWarnings("unused")
 public class PageItem {
     @Getter
     @Setter
