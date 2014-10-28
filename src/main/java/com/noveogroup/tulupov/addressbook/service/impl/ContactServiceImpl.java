@@ -33,6 +33,15 @@ public class ContactServiceImpl extends AbstractServiceImpl<Integer, Contact> im
     }
 
     @Override
+    public void update(Contact contact) {
+        if (contact.getPhoto() == null) {
+            contact.setPhoto(getPhoto(contact.getId()));
+        }
+
+        super.update(contact);
+    }
+
+    @Override
     public long count() {
         return contactDao.count();
     }
@@ -46,7 +55,7 @@ public class ContactServiceImpl extends AbstractServiceImpl<Integer, Contact> im
         }
 
         contact.setPhoto(null);
-        update(contact);
+        contactDao.update(contact);
     }
 
     @Override

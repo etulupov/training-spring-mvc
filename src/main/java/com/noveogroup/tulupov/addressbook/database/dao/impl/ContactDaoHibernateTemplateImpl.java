@@ -16,12 +16,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Contact dao implementation.
+ * Contact dao Hibernate template implementation.
  */
-@Repository
-public class ContactDaoImpl extends AbstractDaoImpl<Integer, Contact> implements ContactDao {
+public class ContactDaoHibernateTemplateImpl extends AbstractDaoHibernateTemplateImpl<Integer, Contact> implements ContactDao {
 
-    public ContactDaoImpl() {
+    public ContactDaoHibernateTemplateImpl() {
         super(Contact.class);
     }
 

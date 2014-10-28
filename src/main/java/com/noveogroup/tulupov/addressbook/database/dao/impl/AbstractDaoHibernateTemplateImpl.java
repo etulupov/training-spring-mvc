@@ -11,11 +11,11 @@ import java.io.Serializable;
 /**
  * Abstract dao implementation.
  */
-public abstract class AbstractDaoImpl<K extends Serializable, E> implements AbstractDao<K, E> {
+public abstract class AbstractDaoHibernateTemplateImpl<K extends Serializable, E> implements AbstractDao<K, E> {
     protected Class<E> entityClass;
     protected HibernateTemplate hibernateTemplate;
 
-    public AbstractDaoImpl(Class<E> entityClass) {
+    public AbstractDaoHibernateTemplateImpl(Class<E> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -47,6 +47,6 @@ public abstract class AbstractDaoImpl<K extends Serializable, E> implements Abst
 
     @Override
     public void update(final E entity) {
-        hibernateTemplate.update(entity);
+        hibernateTemplate.merge(entity);
     }
 }
