@@ -16,7 +16,6 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.io.ByteArrayInputStream;
@@ -35,11 +34,16 @@ import static org.jooq.impl.DSL.table;
  * Contact dao JDBC template implementation.
  */
 public class ContactDaoJDBCTemplateImpl extends JdbcDaoSupport implements ContactDao {
-
+    private static final int PARAM_FIRST_NAME = 1;
+    private static final int PARAM_LAST_NAME = 2;
+    private static final int PARAM_EMAIL = 3;
+    private static final int PARAM_PHONE = 4;
+    private static final int PARAM_IP = 5;
+    private static final int PARAM_PHOTO = 6;
     private static final DSLContext CONTEXT = DSL.using(SQLDialect.H2);
 
     @Autowired
-    public ContactDaoJDBCTemplateImpl(DataSource dataSource) {
+    public ContactDaoJDBCTemplateImpl(final DataSource dataSource) {
         setDataSource(dataSource);
     }
 
@@ -60,18 +64,18 @@ public class ContactDaoJDBCTemplateImpl extends JdbcDaoSupport implements Contac
                         contact.getPhoto())
                 .getSQL();
 
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+        final KeyHolder keyHolder = new GeneratedKeyHolder();
         getJdbcTemplate().update(
                 new PreparedStatementCreator() {
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                        PreparedStatement statement =
-                                connection.prepareStatement(sql, new String[] {ID});
-                        statement.setString(1, contact.getFirstname());
-                        statement.setString(2, contact.getLastname());
-                        statement.setString(3, contact.getEmail());
-                        statement.setString(4, contact.getPhone());
-                        statement.setInt(5, contact.getIp());
-                        statement.setBlob(6, new ByteArrayInputStream(contact.getPhoto()));
+                    public PreparedStatement createPreparedStatement(final Connection connection) throws SQLException {
+                        final PreparedStatement statement =
+                                connection.prepareStatement(sql, new String[]{ID});
+                        statement.setString(PARAM_FIRST_NAME, contact.getFirstname());
+                        statement.setString(PARAM_LAST_NAME, contact.getLastname());
+                        statement.setString(PARAM_EMAIL, contact.getEmail());
+                        statement.setString(PARAM_PHONE, contact.getPhone());
+                        statement.setInt(PARAM_IP, contact.getIp());
+                        statement.setBlob(PARAM_PHOTO, new ByteArrayInputStream(contact.getPhoto()));
 
                         return statement;
                     }
@@ -113,31 +117,32 @@ public class ContactDaoJDBCTemplateImpl extends JdbcDaoSupport implements Contac
                 .set(field(PHOTO), contact.getPhoto())
                 .where(field(ID).equal(contact.getId())).getSQL();
 
-        getJdbcTemplate().update(query, new Object[]{
-                contact.getFirstname(),
-                contact.getLastname(),
-                contact.getEmail(),
-                contact.getPhone(),
-                contact.getIp(),
-                contact.getPhoto(),
-                contact.getId()
-        });
+        getJdbcTemplate().update(query,
+                new Object[]{
+                        contact.getFirstname(),
+                        contact.getLastname(),
+                        contact.getEmail(),
+                        contact.getPhone(),
+                        contact.getIp(),
+                        contact.getPhoto(),
+                        contact.getId(),
+                });
     }
 
     @Override
-    public List<Contact> query(Pageable pageable) {
-        Collection<SortField<Object>> sortFields = new ArrayList<>();
+    public List<Contact> query(final Pageable pageable) {
+        final Collection<SortField<Object>> sortFields = new ArrayList<>();
 
-        Sort sort = pageable.getSort();
+        final Sort sort = pageable.getSort();
 
         if (sort != null) {
-            for (Sort.Order order : sort) {
-                sortFields.add(order.isAscending() ? field(order.getProperty()).asc() :
-                        field(order.getProperty()).desc());
+            for (final Sort.Order order : sort) {
+                sortFields.add(order.isAscending() ? field(order.getProperty()).asc()
+                        : field(order.getProperty()).desc());
             }
         }
 
-        String sql = CONTEXT.select()
+        final String sql = CONTEXT.select()
                 .from(TABLE_NAME)
                 .orderBy(sortFields)
                 .limit(pageable.getPageSize())

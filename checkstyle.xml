@@ -57,12 +57,12 @@
         <module name="FinalLocalVariable"/>
         <module name="FinalParameters"/>
         <module name="GenericWhitespace"/>
-        <module name="HideUtilityClassConstructor"/>
+        <!--<module name="HideUtilityClassConstructor"/>-->
         <module name="IllegalImport"/>
         <module name="IllegalInstantiation"/>
         <module name="IllegalThrows"/>
         <module name="IllegalTokenText"/>
-        <module name="IllegalType"/>
+        <!--<module name="IllegalType"/>-->
         <module name="Indentation"/>
         <module name="InnerAssignment"/>
         <module name="InnerTypeLast"/>

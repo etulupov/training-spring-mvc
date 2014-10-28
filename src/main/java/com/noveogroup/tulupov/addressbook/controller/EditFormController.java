@@ -65,7 +65,7 @@ public class EditFormController extends AbstractFormController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable final int id,
                        final Model model) throws IOException {
-        Contact contact = contactService.get(id);
+        final Contact contact = contactService.get(id);
 
         if (contact == null) {
             log.error("Cannot find contact by id=" + id);

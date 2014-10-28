@@ -17,10 +17,10 @@ public class SessionSortHandlerMethodArgumentResolver extends SortHandlerMethodA
     private static final String SESSION_SORT = "sort";
 
     @Override
-    public Sort resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-                                NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
-        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
-        HttpSession session = request.getSession();
+    public Sort resolveArgument(final MethodParameter parameter, final ModelAndViewContainer mavContainer,
+                                final NativeWebRequest webRequest, final WebDataBinderFactory binderFactory) {
+        final HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
+        final  HttpSession session = request.getSession();
 
         Sort sort = super.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
 

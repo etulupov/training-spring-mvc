@@ -13,7 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import static com.noveogroup.tulupov.addressbook.model.Contact.*;
+import static com.noveogroup.tulupov.addressbook.model.Contact.TABLE_NAME;
 
 /**
  * Contact entity.
@@ -21,8 +21,8 @@ import static com.noveogroup.tulupov.addressbook.model.Contact.*;
 @Entity
 @Table(name = TABLE_NAME)
 @ToString
-@SuppressWarnings("unused")
-public class Contact {
+@SuppressWarnings({ "unused", "hideutilityclassconstructor" })
+public final class Contact {
     public static final String TABLE_NAME = "Contact";
     public static final String ID = "id";
     public static final String FIRST_NAME = "firstname";
@@ -31,7 +31,6 @@ public class Contact {
     public static final String PHONE = "phone";
     public static final String IP = "ip";
     public static final String PHOTO = "photo";
-
 
     @Id
     @Column(name = ID)
@@ -84,4 +83,5 @@ public class Contact {
     @ContentType(value = "image/jpeg", message = "{error.contact.file.invalid_type}")
     @Length(value = 1048576, message = "{error.contact.file.invalid_size}")
     private transient MultipartFile file;
+
 }

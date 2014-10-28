@@ -5,6 +5,9 @@ import java.io.Serializable;
 
 /**
  * Abstract service interface.
+ *
+ * @param <K> the key
+ * @param <E> the entity
  */
 public interface AbstractService<K extends Serializable, E> {
     void add(E entity);

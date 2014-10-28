@@ -16,8 +16,9 @@ public class ExceptionHandlingController {
     public String contactNotFoundError() throws IOException {
         return "error_contact_not_found";
     }
+
     @ExceptionHandler(QueryException.class)
-         public String invalidSortOrderError() throws IOException {
+    public String invalidSortOrderError() throws IOException {
         return "error_invalid_sort_order";
     }
 }

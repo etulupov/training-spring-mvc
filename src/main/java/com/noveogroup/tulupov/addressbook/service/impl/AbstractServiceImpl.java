@@ -8,12 +8,15 @@ import java.io.Serializable;
 
 /**
  * Abstract service implementation.
+ *
+ * @param <K> the key
+ * @param <E> the entity
  */
 public abstract class AbstractServiceImpl<K extends Serializable, E> implements AbstractService<K, E> {
 
     private AbstractDao<K, E> dao;
 
-    protected AbstractServiceImpl(AbstractDao<K, E> dao) {
+    protected AbstractServiceImpl(final AbstractDao<K, E> dao) {
         this.dao = dao;
     }
 

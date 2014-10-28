@@ -10,17 +10,20 @@ import java.io.Serializable;
 
 /**
  * Abstract dao implementation.
+ *
+ * @param <K> the key
+ * @param <E> the entity
  */
 public abstract class AbstractDaoHibernateTemplateImpl<K extends Serializable, E> implements AbstractDao<K, E> {
     protected Class<E> entityClass;
     protected HibernateTemplate hibernateTemplate;
 
-    public AbstractDaoHibernateTemplateImpl(Class<E> entityClass) {
+    public AbstractDaoHibernateTemplateImpl(final Class<E> entityClass) {
         this.entityClass = entityClass;
     }
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
+    public void setSessionFactory(final SessionFactory sessionFactory) {
         this.hibernateTemplate = new HibernateTemplate(sessionFactory);
     }
 

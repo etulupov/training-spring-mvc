@@ -22,7 +22,7 @@ public class ContactServiceImpl extends AbstractServiceImpl<Integer, Contact> im
     private ContactDao contactDao;
 
     @Autowired
-    public ContactServiceImpl(ContactDao contactDao) {
+    public ContactServiceImpl(final ContactDao contactDao) {
         super(contactDao);
         this.contactDao = contactDao;
     }
@@ -33,7 +33,7 @@ public class ContactServiceImpl extends AbstractServiceImpl<Integer, Contact> im
     }
 
     @Override
-    public void update(Contact contact) {
+    public void update(final Contact contact) {
         if (contact.getPhoto() == null) {
             contact.setPhoto(getPhoto(contact.getId()));
         }
