@@ -24,27 +24,27 @@ public final class PageWrapper {
             final int pageCount = page.getTotalPages();
             final int current = page.getNumber();
 
-            PageItem pageItem = new PageItem();
-            pageItem.setNumber(Math.max(current - 1, 0));
-            pageItem.setTitle("&laquo;");
-            pageItem.setActive(false);
-            pageItem.setDisabled(current == 0);
-            items.add(pageItem);
+            items.add(PageItem.builder()
+                    .number(Math.max(current - 1, 0))
+                    .title("&laquo;")
+                    .active(false)
+                    .disabled(current == 0)
+                    .build());
 
             for (int i = 0; i < pageCount; i++) {
-                pageItem = new PageItem();
-                pageItem.setNumber(i);
-                pageItem.setTitle(String.valueOf(i + 1));
-                pageItem.setActive(i == current);
-                items.add(pageItem);
+                items.add(PageItem.builder()
+                        .number(i)
+                        .title(String.valueOf(i + 1))
+                        .active(i == current)
+                        .build());
             }
 
-            pageItem = new PageItem();
-            pageItem.setNumber(Math.min(current + 1, pageCount - 1));
-            pageItem.setTitle("&raquo;");
-            pageItem.setActive(false);
-            pageItem.setDisabled(current == pageCount - 1);
-            items.add(pageItem);
+            items.add(PageItem.builder()
+                    .number(Math.min(current + 1, pageCount - 1))
+                    .title("&raquo;")
+                    .active(false)
+                    .disabled(current == pageCount - 1)
+                    .build());
         }
     }
 }
