@@ -19,10 +19,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--Explicit java.com.noveogroup.tulupov.addressbook.controller-->
-    <bean id="mainController" class="com.noveogroup.tulupov.addressbook.controller.MainController"/>
-
-
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 

@@ -34,7 +34,7 @@ public class MainController {
     @Autowired
     private ContactService contactService;
 
-    @RequestMapping({"/", "/contacts"})
+    @RequestMapping({ "/", "/contacts" })
     public String listContacts(final Model model,
                                @PageableDefault(size = PAGE_SIZE)
                                final Pageable pageable) {

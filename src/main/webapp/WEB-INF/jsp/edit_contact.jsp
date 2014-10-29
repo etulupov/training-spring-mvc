@@ -9,6 +9,7 @@
 <head>
     <title><spring:message code="label.title"/></title>
     <script type="text/javascript" src="<c:url value="/resources/js/validator.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/validator_strings.json?callback=init"/>"></script>
 </head>
 <body>
 
