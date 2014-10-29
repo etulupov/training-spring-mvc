@@ -22,7 +22,6 @@ import java.io.IOException;
  * Contact edit form controller.
  */
 @Controller
-@Slf4j
 public class EditFormController extends AbstractFormController {
     private static final String CONTACT = "contact";
     private static final String VIEW_EDIT_CONTACT = "edit_contact";
@@ -54,8 +53,7 @@ public class EditFormController extends AbstractFormController {
         try {
             contactService.update(contact);
         } catch (DataAccessException e) {
-            log.error("Cannot update contact id=" + id, e);
-            throw new ContactNotFoundException();
+            throw new ContactNotFoundException("Cannot update contact id=" + id, e);
         }
 
 
@@ -69,8 +67,7 @@ public class EditFormController extends AbstractFormController {
         final Contact contact = contactService.get(id);
 
         if (contact == null) {
-            log.error("Cannot find contact by id=" + id);
-            throw new ContactNotFoundException();
+            throw new ContactNotFoundException("Cannot find contact by id=" + id);
         }
 
         model.addAttribute(MODEL_CONTACT, contact);

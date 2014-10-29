@@ -22,7 +22,6 @@ import static com.noveogroup.tulupov.addressbook.util.Config.PAGE_SIZE;
 /**
  * Main controller.
  */
-@Slf4j
 @Controller
 public class MainController {
     private static final String VIEW_LIST = "contacts";
@@ -55,8 +54,7 @@ public class MainController {
         final Contact contact = contactService.get(id);
 
         if (contact == null) {
-            log.error("Cannot load contact by id=" + id);
-            throw new ContactNotFoundException();
+            throw new ContactNotFoundException("Cannot load contact by id=" + id);
         }
 
         model.addAttribute(MODEL_CONTACT, contact);
@@ -70,8 +68,7 @@ public class MainController {
         try {
             contactService.remove(id);
         } catch (DataAccessException e) {
-            log.error("Cannot delete contact by id=" + id);
-            throw new ContactNotFoundException();
+            throw new ContactNotFoundException("Cannot delete contact by id=" + id, e);
         }
 
         if (page != null) {
