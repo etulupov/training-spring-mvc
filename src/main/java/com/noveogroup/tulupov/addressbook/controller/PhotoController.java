@@ -20,6 +20,7 @@ import java.io.InputStream;
  */
 @Controller
 public class PhotoController {
+    private static final String REDIRECT_VIEW_EDIT_CONTACT = "redirect:/edit/";
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -52,6 +53,6 @@ public class PhotoController {
     public String delete(@PathVariable("id") final int id) throws IOException {
         contactService.removePhoto(id);
 
-        return "redirect:/edit/" + id;
+        return REDIRECT_VIEW_EDIT_CONTACT + id;
     }
 }

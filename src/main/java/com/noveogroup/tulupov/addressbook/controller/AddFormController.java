@@ -21,6 +21,7 @@ import java.io.IOException;
 public class AddFormController extends AbstractFormController {
     private static final String CONTACT = "contact";
     private static final String VIEW_CONTACT = CONTACT;
+    private static final String REDIRECT_VIEW_SHOW_CONTACT = "redirect:/contacts/";
     private static final String MODEL_CONTACT = CONTACT;
 
     @Autowired
@@ -44,7 +45,7 @@ public class AddFormController extends AbstractFormController {
 
         contactService.add(contact);
 
-        return "redirect:/contacts/" + contact.getId();
+        return REDIRECT_VIEW_SHOW_CONTACT + contact.getId();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)

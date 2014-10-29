@@ -12,13 +12,16 @@ import java.io.IOException;
  */
 @ControllerAdvice
 public class ExceptionHandlingController {
+    private static final String VIEW_CONTACT_NOT_FOUND = "error_contact_not_found";
+    private static final String VIEW_INVALID_SORT_ORDER = "error_invalid_sort_order";
+
     @ExceptionHandler(ContactNotFoundException.class)
     public String contactNotFoundError() throws IOException {
-        return "error_contact_not_found";
+        return VIEW_CONTACT_NOT_FOUND;
     }
 
     @ExceptionHandler(QueryException.class)
     public String invalidSortOrderError() throws IOException {
-        return "error_invalid_sort_order";
+        return VIEW_INVALID_SORT_ORDER;
     }
 }

@@ -26,6 +26,7 @@ import java.io.IOException;
 public class EditFormController extends AbstractFormController {
     private static final String CONTACT = "contact";
     private static final String VIEW_EDIT_CONTACT = "edit_contact";
+    private static final String REDIRECT_VIEW_SHOW_CONTACT = "redirect:/contacts/";
     private static final String MODEL_CONTACT = CONTACT;
 
     @Autowired
@@ -58,7 +59,7 @@ public class EditFormController extends AbstractFormController {
         }
 
 
-        return "redirect:/contacts/" + id;
+        return REDIRECT_VIEW_SHOW_CONTACT + id;
     }
 
 

@@ -28,12 +28,13 @@ public class MainController {
     private static final String VIEW_LIST = "contacts";
     private static final String VIEW_SHOW_CONTACT = "show_contact";
     private static final String REDIRECT_VIEW_LIST = "redirect:/contacts";
+    private static final String REDIRECT_VIEW_LIST_WITH_PAGINATION = REDIRECT_VIEW_LIST + "/?page=";
     private static final String MODEL_CONTACT = "contact";
 
     @Autowired
     private ContactService contactService;
 
-    @RequestMapping({ "/", "/contacts" })
+    @RequestMapping({"/", "/contacts"})
     public String listContacts(final Model model,
                                @PageableDefault(size = PAGE_SIZE)
                                final Pageable pageable) {
@@ -74,7 +75,7 @@ public class MainController {
         }
 
         if (page != null) {
-            return REDIRECT_VIEW_LIST + "/?page=" + page;
+            return REDIRECT_VIEW_LIST_WITH_PAGINATION + page;
         } else {
             return REDIRECT_VIEW_LIST;
         }

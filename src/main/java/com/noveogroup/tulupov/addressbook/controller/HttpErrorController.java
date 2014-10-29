@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HttpErrorController {
+    private static final String VIEW_PAGE_NOT_FOUND = "error_404";
 
     @RequestMapping("/error/404")
     public String contactNotFoundError() {
-        return "error_404";
+        return VIEW_PAGE_NOT_FOUND;
     }
 }
