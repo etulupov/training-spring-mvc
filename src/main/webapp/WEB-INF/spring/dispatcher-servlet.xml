@@ -25,13 +25,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--Explicit com.noveogroup.tulupov.addressbook.controller-->
-    <bean id="mainController" class="com.noveogroup.tulupov.addressbook.controller.MainController"/>
-
-
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-
         <!-- one of the properties available; the maximum file size in bytes -->
         <property name="maxUploadSize" value="1048576"/>
     </bean>
