@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import static com.noveogroup.tulupov.addressbook.util.Config.PAGE_SIZE;
+import static com.noveogroup.tulupov.addressbook.model.PageItem.PAGE_SIZE;
 
 /**
  * Main controller.

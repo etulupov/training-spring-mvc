@@ -11,6 +11,8 @@ import lombok.experimental.Builder;
 @SuppressWarnings("unused")
 @Builder
 public class PageItem {
+    public static final int PAGE_SIZE = 10;
+    
     @Getter
     @Setter
     private boolean active;
