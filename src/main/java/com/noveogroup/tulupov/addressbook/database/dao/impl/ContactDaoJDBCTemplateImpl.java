@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -33,7 +34,7 @@ import static org.jooq.impl.DSL.table;
 /**
  * Contact dao JDBC template implementation.
  */
-public class ContactDaoJDBCTemplateImpl extends JdbcDaoSupport implements ContactDao {
+public class ContactDaoJDBCTemplateImpl implements ContactDao {
     private static final int PARAM_FIRST_NAME = 1;
     private static final int PARAM_LAST_NAME = 2;
     private static final int PARAM_EMAIL = 3;
@@ -42,9 +43,11 @@ public class ContactDaoJDBCTemplateImpl extends JdbcDaoSupport implements Contac
     private static final int PARAM_PHOTO = 6;
     private static final DSLContext CONTEXT = DSL.using(SQLDialect.H2);
 
+    private JdbcTemplate jdbcTemplate;
+
     @Autowired
     public ContactDaoJDBCTemplateImpl(final DataSource dataSource) {
-        setDataSource(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
@@ -160,5 +163,9 @@ public class ContactDaoJDBCTemplateImpl extends JdbcDaoSupport implements Contac
                 .from(table(TABLE_NAME)).getSQL();
 
         return getJdbcTemplate().queryForLong(query);
+    }
+
+    protected JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
     }
 }
