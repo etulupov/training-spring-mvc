@@ -88,9 +88,9 @@ public class ContactDaoJDBCTemplateImpl implements ContactDao {
     }
 
     @Override
-    public void remove(final Contact contact) {
+    public void remove(final Integer id) {
         final String query = CONTEXT.delete(table(TABLE_NAME))
-                .where(field(ID).equal(contact.getId()))
+                .where(field(ID).equal(id))
                 .getSQL(ParamType.INLINED);
 
         getJdbcTemplate().update(query);

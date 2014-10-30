@@ -27,7 +27,7 @@ public abstract class AbstractServiceImpl<K extends Serializable, E> implements 
 
     @Override
     public void remove(final K key) {
-        dao.remove(dao.get(key));
+        dao.remove(key);
     }
 
     @Override

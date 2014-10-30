@@ -13,7 +13,7 @@ public interface AbstractDao<K extends Serializable, E> {
 
     void update(E entity);
 
-    void remove(E entity);
+    void remove(K key);
 
     E get(K key);
 }

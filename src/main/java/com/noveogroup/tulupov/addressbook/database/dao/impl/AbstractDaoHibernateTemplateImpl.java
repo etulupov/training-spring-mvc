@@ -33,7 +33,8 @@ public abstract class AbstractDaoHibernateTemplateImpl<K extends Serializable, E
     }
 
     @Override
-    public void remove(final E entity) {
+    public void remove(final K key) {
+        final E entity = hibernateTemplate.load(entityClass, key);
         hibernateTemplate.delete(entity);
     }
 

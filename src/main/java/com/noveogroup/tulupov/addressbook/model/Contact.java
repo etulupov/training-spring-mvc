@@ -19,9 +19,10 @@ import static com.noveogroup.tulupov.addressbook.model.Contact.TABLE_NAME;
  * Contact entity.
  */
 @Entity
+@org.hibernate.annotations.Entity(dynamicUpdate = true)
 @Table(name = TABLE_NAME)
 @ToString
-@SuppressWarnings({ "unused", "hideutilityclassconstructor" })
+@SuppressWarnings("unused")
 public final class Contact {
     public static final String TABLE_NAME = "Contact";
     public static final String ID = "id";

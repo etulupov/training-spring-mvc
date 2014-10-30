@@ -3,9 +3,7 @@ package com.noveogroup.tulupov.addressbook.controller;
 import com.noveogroup.tulupov.addressbook.exception.ContactNotFoundException;
 import com.noveogroup.tulupov.addressbook.model.Contact;
 import com.noveogroup.tulupov.addressbook.service.ContactService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,10 +50,9 @@ public class EditFormController extends AbstractFormController {
 
         try {
             contactService.update(contact);
-        } catch (DataAccessException e) {
+        } catch (RuntimeException e) {
             throw new ContactNotFoundException("Cannot update contact id=" + id, e);
         }
-
 
         return REDIRECT_VIEW_SHOW_CONTACT + id;
     }
