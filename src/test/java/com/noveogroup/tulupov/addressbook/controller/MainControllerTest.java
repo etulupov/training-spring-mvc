@@ -2,8 +2,8 @@ package com.noveogroup.tulupov.addressbook.controller;
 
 import com.noveogroup.tulupov.addressbook.exception.ContactNotFoundException;
 import com.noveogroup.tulupov.addressbook.model.Contact;
+import com.noveogroup.tulupov.addressbook.model.PageItem;
 import com.noveogroup.tulupov.addressbook.service.ContactService;
-import com.noveogroup.tulupov.addressbook.util.Config;
 import com.noveogroup.tulupov.addressbook.util.IPUtils;
 import com.noveogroup.tulupov.addressbook.util.TestUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +43,7 @@ public class MainControllerTest {
     private static final String VIEW_CONTACT_NOT_FOUND = "error_contact_not_found";
 
     private static final int PAGE_COUNT = 2;
-    private static final int COUNT = Config.PAGE_SIZE * PAGE_COUNT;
+    private static final int COUNT = PageItem.PAGE_SIZE * PAGE_COUNT;
 
     private static final List<Contact> CONTACTS = new ArrayList<Contact>() {
         {
