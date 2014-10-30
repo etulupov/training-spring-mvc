@@ -32,7 +32,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
     <!--Sitemesh configuration-->
     <filter>
         <filter-name>sitemesh</filter-name>
-        <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+        <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
     </filter>
 
     <filter-mapping>

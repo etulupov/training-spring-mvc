@@ -34,9 +34,16 @@ public class HttpErrorControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
+
+    @Test
+    public void testError404Redirect() throws Exception {
+        mockMvc.perform(get("/error/404"))
+                .andExpect(status().isMovedTemporarily());
+    }
+
     @Test
     public void testError404() throws Exception {
-        mockMvc.perform(get("/error/404"))
+        mockMvc.perform(get("/error/404.html"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("error_404"));
     }
