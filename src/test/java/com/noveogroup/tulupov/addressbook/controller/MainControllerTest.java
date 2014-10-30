@@ -97,7 +97,7 @@ public class MainControllerTest {
         mockMvc.perform(get("/contacts"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("contacts"))
-                .andExpect(model().attribute("contactList", hasSize(Config.PAGE_SIZE)))
+                .andExpect(model().attribute("contactList", hasSize(PageItem.PAGE_SIZE)))
                 .andExpect(model().attribute("pages", hasSize(PAGE_COUNT + 2)));
     }
 
