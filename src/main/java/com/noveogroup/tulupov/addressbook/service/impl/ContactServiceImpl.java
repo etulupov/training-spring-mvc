@@ -5,6 +5,7 @@ import com.noveogroup.tulupov.addressbook.database.dao.ContactDao;
 import com.noveogroup.tulupov.addressbook.exception.ContactNotFoundException;
 import com.noveogroup.tulupov.addressbook.model.Contact;
 import com.noveogroup.tulupov.addressbook.service.ContactService;
+import com.noveogroup.tulupov.addressbook.util.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -29,7 +30,9 @@ public class ContactServiceImpl extends AbstractServiceImpl<Integer, Contact> im
     }
 
     @Override
-    public Page<Contact> query(final Pageable pageable) {
+    public Page<Contact> query(final Pageable pageableRequest) {
+        final Pageable pageable = PaginationUtils.checkRange(pageableRequest, contactDao.count());
+
         return new PageImpl<Contact>(contactDao.query(pageable), pageable, contactDao.count());
     }
 

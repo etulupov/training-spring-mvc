@@ -16,10 +16,10 @@
 
 <div>
     <div class="page-header"><h3><spring:message code="label.contacts"/></h3></div>
+<c:choose>
+    <c:when test="${!empty contactList}">
+        <my:paginator/>
 
-    <my:paginator/>
-
-    <c:if test="${!empty contactList}">
         <table class="table table-striped fixed-table-container">
             <thead>
             <tr>
@@ -54,9 +54,14 @@
             </c:forEach>
             </tbody>
         </table>
-    </c:if>
 
-    <my:paginator/>
+        <my:paginator/>
+    </c:when>
+    <c:otherwise>
+        <div class="alert alert-info"><spring:message code="error.no_contacts"/></div>
+    </c:otherwise>
+</c:choose>
+
 </div>
 
 </body>
