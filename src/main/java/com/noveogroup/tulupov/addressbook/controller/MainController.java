@@ -28,6 +28,10 @@ public class MainController {
     private static final String REDIRECT_VIEW_LIST = "redirect:/contacts";
     private static final String REDIRECT_VIEW_LIST_WITH_PAGINATION = REDIRECT_VIEW_LIST + "/?page=";
     private static final String MODEL_CONTACT = "contact";
+    private static final String MODEL_CONTACT_LIST = "contactList";
+    private static final String MODEL_PAGES = "pages";
+    private static final String MODEL_PAGE = "page";
+    private static final String MODEL_SORT = "sort";
 
     @Autowired
     private ContactService contactService;
@@ -39,10 +43,10 @@ public class MainController {
         final Page<Contact> page = contactService.query(pageable);
         final PageWrapper wrapper = new PageWrapper(page);
 
-        model.addAttribute("contactList", page.getContent());
-        model.addAttribute("pages", wrapper.getItems());
-        model.addAttribute("page", pageable.getPageNumber());
-        model.addAttribute("sort", pageable.getSort());
+        model.addAttribute(MODEL_CONTACT_LIST, page.getContent());
+        model.addAttribute(MODEL_PAGES, wrapper.getItems());
+        model.addAttribute(MODEL_PAGE, pageable.getPageNumber());
+        model.addAttribute(MODEL_SORT, pageable.getSort());
 
         return VIEW_LIST;
     }
