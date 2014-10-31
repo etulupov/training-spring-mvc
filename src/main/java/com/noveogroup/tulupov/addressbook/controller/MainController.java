@@ -32,7 +32,7 @@ public class MainController {
     @Autowired
     private ContactService contactService;
 
-    @RequestMapping({ "/", "/contacts" })
+    @RequestMapping(value = { "/", "/contacts" }, method = RequestMethod.GET)
     public String listContacts(final Model model,
                                @PageableDefault(size = PAGE_SIZE)
                                final Pageable pageable) {
@@ -61,7 +61,7 @@ public class MainController {
         return VIEW_SHOW_CONTACT;
     }
 
-    @RequestMapping("/delete/{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteContact(@PathVariable("id") final Integer id,
                                 @RequestParam(required = false) final String page) {
         try {

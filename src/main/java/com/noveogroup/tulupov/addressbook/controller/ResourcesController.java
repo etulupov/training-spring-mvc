@@ -7,6 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.*;
 
@@ -29,7 +30,7 @@ public class ResourcesController {
     @Autowired
     private MessageSource messageSource;
 
-    @RequestMapping("/resources/validator_strings.json")
+    @RequestMapping(value = "/resources/validator_strings.json", method = RequestMethod.GET)
     public Map<String, String> validatorStrings() {
         final Map<String, String> map = new HashMap<>();
         final Locale locale = LocaleContextHolder.getLocale();
